@@ -19,16 +19,17 @@ function Weather(cityname, key, lat, lon) {
       </div>
       <div class="container">
           <div class="title">
-              <img src="" alt="">
-              <h5>почасовой прогноз</h5>
+          <img src="./img/clock.png" alt="">
+
+          <h5>почасовой прогноз</h5>
           </div>
           <div class="hours ${cityname}">
           </div>
       </div>
       <div class="container">
           <div class="title">
-              <img src="" alt="">
-              <h5>прогноз на 8 дн</h5>
+          <img src="./img/calendar.png" alt="">
+          <h5>прогноз на 8 дн</h5>
           </div>
           <div class="daily ${cityname}">
           </div>
@@ -38,7 +39,6 @@ function Weather(cityname, key, lat, lon) {
   );
   const $currentTemp = document.querySelector(`.temp.${cityname}`);
   const $currentDescription = document.querySelector(`#descriotion.${cityname}`);
-  const $currentDescriptionIcon = document.querySelector(`#descriotionIcon.${cityname}`);
   const $currentMax = document.querySelector(`#maxTemp.${cityname}`);
   const $currentMin = document.querySelector(`#minTemp.${cityname}`);
   const $hours = document.querySelector(`.hours.${cityname}`);

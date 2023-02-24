@@ -18,7 +18,7 @@ h5{
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
-    background-color: antiquewhite;
+    background-color: rgb(114, 215, 255);
 }
 
 .container{
@@ -75,7 +75,6 @@ h5{
     display: flex;
 }
 .title > img{
-    background-color: black;
     width: 20px;
     
 }
