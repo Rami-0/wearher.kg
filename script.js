@@ -19,18 +19,19 @@ function Weather(cityname, key, lat, lon) {
       </div>
       <div class="container">
           <div class="title">
-          <img src="./img/clock.png" alt="">
-
-          <h5>почасовой прогноз</h5>
+            <img src="./img/clock.svg" alt="">
+            <h5>почасовой прогноз</h5>
           </div>
+          <hr>
           <div class="hours ${cityname}">
           </div>
       </div>
       <div class="container">
           <div class="title">
-          <img src="./img/calendar.png" alt="">
+          <img src="./img/calendar.svg" alt="">
           <h5>прогноз на 8 дн</h5>
           </div>
+          <hr>
           <div class="daily ${cityname}">
           </div>
         </div>
@@ -43,23 +44,22 @@ function Weather(cityname, key, lat, lon) {
   const $currentMin = document.querySelector(`#minTemp.${cityname}`);
   const $hours = document.querySelector(`.hours.${cityname}`);
   const $daily = document.querySelector(`.daily.${cityname}`)
+  const weekDays = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
 
   //
   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=ru&units=metric&appid=${key}`;
   fetch(url)
     .then((resp) => resp.json())
     .then((data) => {
-      if (cityname == "myLoc") {
+      if (cityname == "L") {
         document.querySelector(`#city.${cityname}`).textContent = data.timezone;
-      }
-      console.log(data);
-      if (cityname == " ") {
         cityname = data.timezone;
       }
+      console.log(data);
       $currentTemp.innerHTML = ` ${data.current.temp.toFixed(0)}°`;
       $currentDescription.textContent = data.current.weather[0].description;
       $currentMax.textContent =
-        "Макс.: " + data.daily[0].temp.max.toFixed(0) + "°";
+        "Макс.: " + data.daily[0].temp.max.toFixed(0) + "°,";
       $currentMin.textContent =
         "мин.: " + data.daily[0].temp.min.toFixed(0) + "°";
 
@@ -70,19 +70,7 @@ function Weather(cityname, key, lat, lon) {
           `
       <div class="hour">
         <p>${
-          index == 0
-            ? "сейчас"
-            : hour < 24
-            ? hour
-            : hour < 48
-            ? hour - 24
-            : hour < 72
-            ? hour - 48
-            : hour
-        }</p>
-        <img src="http://openweathermap.org/img/wn/${
-          elem.weather[0].icon
-        }@2x.png"
+          index == 0? "сейчас": hour < 24? hour: hour < 48? hour - 24: hour < 72? hour - 48: hour}</p><img src="http://openweathermap.org/img/wn/${elem.weather[0].icon}@2x.png">
         <p>${elem.temp.toFixed(0)}°</p>
       </div>
       `
@@ -93,10 +81,15 @@ function Weather(cityname, key, lat, lon) {
           "beforeend",
           `
       <div class="day">
-        <p>${index}</p>
+        <div class="left">
+        <h6>${index == 0 ? 'Сегодня' : weekDays[new Date(elem.dt*1000).getDay()]}</h6>
         <img src="http://openweathermap.org/img/wn/${elem.weather[0].icon}@2x.png">
-        <p>${elem.temp.max.toFixed(0)}°</p>
-        <p>${elem.temp.min.toFixed(0)}°</p>
+        </div>
+        
+        <div class="right">
+        <p>Макс.: ${elem.temp.max.toFixed(0)}°</p>
+        <p>мин.: ${elem.temp.min.toFixed(0)}°</p>
+        </div>
       </div>
       `
         );
@@ -118,7 +111,7 @@ async function myFunction() {
     const pos = await getCurrentPosition();
     const latitude = pos.coords.latitude;
     const longitude = pos.coords.longitude;
-    const myLoc = new Weather("myLoc", key, latitude, longitude);
+    const myLoc = new Weather("L", key, latitude, longitude);
     // console.log(pos.coords.latitude, pos.coords.longitude);
   } catch (error) {
     console.log(error);
