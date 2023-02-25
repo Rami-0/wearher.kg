@@ -2,6 +2,23 @@
 const key = "658767b0ae936b022f59a69f44868419"
 const $body = document.querySelector(".body");
 
+
+let loader = document.querySelector(".loader-wrapper")
+let innerLoader = document.querySelector(".loader")
+let lLoader = document.querySelector(".loader-inner")
+let  loaderOff = () => {
+  setTimeout(()=>{
+    loader.classList.add("fadeOut")
+    innerLoader.classList.add("fadeOut")
+    lLoader.classList.add("fadeOut")
+    // loader.classList.add("hide")
+    // innerLoader.classList.add("hide")
+    // lLoader.classList.add("hide")
+  },1000)
+}
+
+
+
 function Weather(cityname, key, lat, lon) {
   // add to html
   $body.insertAdjacentHTML(
@@ -51,6 +68,7 @@ function Weather(cityname, key, lat, lon) {
   fetch(url)
     .then((resp) => resp.json())
     .then((data) => {
+      
       if (cityname == "L") {
         document.querySelector(`#city.${cityname}`).textContent = data.timezone;
         cityname = data.timezone;
@@ -124,4 +142,6 @@ myFunction().then(() => {
   const Tokmok = new Weather("Tокмок", key, 42.84194, 75.30149);
   const JalalAbad = new Weather("Жалал-Абад", key, 40.933155, 72.981491);
   const Batken = new Weather("Баткен", key, 40.34532, 69.859741);
-});
+
+}).then(()=>loaderOff());
+
