@@ -3,17 +3,14 @@ const key = "658767b0ae936b022f59a69f44868419"
 const $body = document.querySelector(".body");
 
 
-let loader = document.querySelector(".loader-wrapper")
-let innerLoader = document.querySelector(".loader")
-let lLoader = document.querySelector(".loader-inner")
+const loader = document.querySelector(".loader-wrapper")
+const innerLoader = document.querySelector(".loader")
+const lLoader = document.querySelector(".loader-inner")
 let  loaderOff = () => {
-  setTimeout(()=>{
+  setTimeout(function(){
     loader.classList.add("fadeOut")
     innerLoader.classList.add("fadeOut")
     lLoader.classList.add("fadeOut")
-    // loader.classList.add("hide")
-    // innerLoader.classList.add("hide")
-    // lLoader.classList.add("hide")
   },1000)
 }
 
@@ -143,5 +140,11 @@ myFunction().then(() => {
   const JalalAbad = new Weather("Жалал-Абад", key, 40.933155, 72.981491);
   const Batken = new Weather("Баткен", key, 40.34532, 69.859741);
 
-}).then(()=>loaderOff());
+})
+.then(()=>loaderOff())
+.then(()=>{
+  setTimeout(()=>{
+    loader.style.height = "0px"
+  },2000)
+});
 

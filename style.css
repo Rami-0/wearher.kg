@@ -58,10 +58,9 @@
 
 
 .fadeOut {
-  transition: 1.5s;
+  transition: 1s;
   animation: none;
   opacity: 0;
-
 }
 
 body, 
