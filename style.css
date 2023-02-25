@@ -46,6 +46,7 @@ hr{
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     padding: 1.5vh 2vh;
+    z-index: 99;
 }
 
 .City{
@@ -54,6 +55,7 @@ hr{
     flex-direction: column;
     scroll-snap-align: start;
     scroll-snap-align: end;
+    z-index: auto;
 }
 ::-webkit-scrollbar{
     display: none;
