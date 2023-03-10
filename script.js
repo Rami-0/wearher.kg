@@ -164,7 +164,7 @@ const form = document.querySelector("#searchForm")
 function search() {
   let cityname = document.querySelector("#placeName").value; 
 
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=5&appid=${key}`)
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=5&appid=${key}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
