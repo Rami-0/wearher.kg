@@ -165,14 +165,7 @@ function search() {
   let cityname = document.querySelector("#placeName").value; 
 
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&limit=5&appid=${key}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Response not OK', res);
-        }
-        return res.json();
-      }).then(/* your then handler */).catch((e) => {
-        alert('Error');      
-      })  
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         let lat = data[0].lat 
@@ -186,3 +179,14 @@ document.querySelector("#search").addEventListener("click",(e)=>{
   search()
   form.reset();
 } )
+
+
+// {
+// 	if (!res.ok) {
+// 		throw new Error('Response not OK', res);
+// 	}
+// 	return res.json();
+// }).then(/* your then handler */).catch((e) => {
+// 	alert('Error');      
+// })  
+
